@@ -1,0 +1,5 @@
+<h1>Gossip numéro <%=@gossip.id%></h1>
+<p>Date de création : <%=@gossip.created_at%></p>
+<p><%= link_to "Auteur :",user_path(@gossip.user_id) %> : <%= @user.find(@gossip.user_id).first_name%></p>
+<p>Titre : <%= @gossip.title %></p>
+<p>Content : <%= @gossip.content %></p>

@@ -1,0 +1,5 @@
+<h1>Auteur: <%=@user.first_name%> <%=@user.last_name%></h1>
+<p>Description : <%=@user.description%></p>
+<p>Age : <%=@user.age%> ans </p>
+<p>Email : <%=@user.email%></p>
+<p>Ville : <%=@city.find(@user.city_id).name%></p>
