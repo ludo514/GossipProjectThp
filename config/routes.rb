@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  
+
   root 'home#index'
-  resources :gossip
+  resources :gossips
   resources :user, except: [:create, :new, :update, :edit, :destroy]
   resources :city, except: [:create, :new, :update, :edit, :destroy]
   get '/contact', to: 'contact#index'
