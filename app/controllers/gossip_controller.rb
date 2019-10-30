@@ -7,6 +7,7 @@ class GossipController < ApplicationController
 
   def new
     # Méthode qui crée un potin vide et l'envoie à une view qui affiche le formulaire pour 'le remplir' (new.html.erb)
+    @gossip = Gossip.all
   end
 
   def create
@@ -16,6 +17,8 @@ class GossipController < ApplicationController
     # avec xxx qui sont les données obtenues à partir du formulaire
     @gossip = Gossip.new(user_id:11, title: params[:title], content: params[:content])
     if @gossip.save
+      render :new
+    else
       render :new
     end
   end
