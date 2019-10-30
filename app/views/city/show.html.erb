@@ -1,0 +1,10 @@
+<h1><%= @city.name%></h1>
+<p>Liste des potins de la ville :</p>
+<% u = @user.where(city: @city.id)%>
+<% u.each do |t|%>
+ 	<p>Auteur : <%=t.first_name%></p>
+ 	<% g = @gossip.where(user: t.id)%>
+ 	<% g.each do |t| %>
+	 	<p><%= t.content%></p>
+	<% end %>
+<%end%>
