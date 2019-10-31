@@ -4,10 +4,22 @@
 
 </head>
 	<body>
-		<h1>Gossip numéro <%=@gossip.id%></h1>
-		<p>Date de création : <%=@gossip.created_at%></p>
-		<p> Auteur : <%= link_to "#{@user.find(@gossip.user_id).first_name}",user_path(@gossip.user_id) %></p>
-		<p>Titre : <%= @gossip.title %></p>
-		<p>Content : <%= @gossip.content %></p>
+		<h1 class="text-center">Gossip numéro <%=@gossip.id%></h1>
+		<div class="row justify-content-center">
+						 <div class="col-sm-6 pt-2">
+						   <div class="card">
+						     <div class="card-body">
+						       <h5 class="card-title"> Auteur : <%= link_to "#{@user.find(@gossip.user_id).first_name}",user_path(@gossip.user_id) %></h5>
+						       <p class="card-text">Date de création :<%=@gossip.created_at%></p>
+						       <p class="card-text">Titre :<%= @gossip.title %></p>
+						       <p class="card-text">Contenu : <%= @gossip.content %></p>
+						       <% if compare(@gossip.user_id, session[:user_id])%>
+							       	<a class="btn btn-primary" href="<%= edit_gossip_path(@gossip.id)%>">Editer</a>
+							       	<a href="<%= gossip_path(@gossip.id) %>" class="btn btn-danger" data-confirm="êtes vous sur ?" data-method="DELETE">Supprimez</a>
+						       	<%end%>
+						     </div>
+						   </div>
+						</div>
+				</div>
 	</body>
 </html>

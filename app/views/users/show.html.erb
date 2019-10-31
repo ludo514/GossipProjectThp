@@ -5,10 +5,17 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 	<body>	
-		<h1>Auteur: <%=@user.first_name%> <%=@user.last_name%></h1>
-		<p>Description : <%=@user.description%></p>
-		<p>Age : <%=@user.age%> ans </p>
-		<p>Email : <%=@user.email%></p>
-		<p>Ville : <%= link_to "#{@city.find(@user.city_id).name}",city_path(@user.city_id) %></p>
+				<div class="row justify-content-center">
+						 <div class="col-sm-6 pt-2">
+						   <div class="card">
+						     <div class="card-body">
+						       <h5 class="card-title"> Auteur : <%=@user.first_name%> <%=@user.last_name%></h5>
+						       <p class="card-text">Age : <%=@user.age%> ans </p>
+						       <p class="card-text">Email : <%=@user.email%>   Ville : <%= link_to "#{@city.find(@user.city_id).name}",city_path(@user.city_id)%></p>
+						       <p class="card-text">Description : <%=@user.description%></p>
+						     </div>
+						   </div>
+						</div>
+				</div>
 	</body>
 </html>
