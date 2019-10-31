@@ -1,4 +1,5 @@
 class GossipsController < ApplicationController
+  before_action :authenticate_user, only: [:new]
   def show
     # Méthode qui récupère le potin concerné et l'envoie à la view show (show.html.erb) pour affichage
     @gossip = Gossip.find(params[:id])
@@ -26,16 +27,29 @@ class GossipsController < ApplicationController
   end
 
   def create
-    post_params = params.require(:gossip).permit(:title, :content, :user_id)
-    Gossip.create(post_params)
-    redirect_to '/'
+    gossip = Gossip.create(user_id: session[:user_id], title: params[:gossip][:title], content: params[:gossip][:content])
+    if gossip
+      redirect_to '/'
+    else
+      render :new
+    end
   end
 
   def destroy
     # Méthode qui récupère le potin concerné et le détruit en base
     # Une fois la suppression faite, on redirige généralement vers la méthode index (pour afficher la liste à jour)
-    @gossip = Gossip.find(params[:id])
-    @gossip.destroy
-    redirect_to '/'
+      @gossip = Gossip.find(params[:id])
+      @gossip.destroy
+      redirect_to '/'
+
+  end
+
+  private
+
+  def authenticate_user
+    unless current_user
+      flash[:danger] = "Please log in."
+      redirect_to new_session_path
+    end
   end
 end

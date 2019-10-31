@@ -8,10 +8,13 @@ class UsersController < ApplicationController
   end
 
   def create
-
   	post_params = params.require(:user).permit(:first_name, :last_name, :password, :city_id, :email)
-    User.create(post_params)
-    redirect_to '/'
+    user = User.create(post_params)
+    if user
+      redirect_to '/'
+    else
+      render :new
+    end
   end
 
   def destroy

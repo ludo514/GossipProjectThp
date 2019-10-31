@@ -11,7 +11,8 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
 
-  <body>
+  <body style="background-color: #DEB887;">
+      <div><%= flash[:success] %></div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,19 +32,15 @@
             <li class="nav-item">
               <a class="nav-link" href="<%= new_gossip_path%>">Nouveau Potin</a>
             </li>
-            <% if current_user%>
-                <li class="nav-item">
-                  <%= link_to "Se déconnecter", session_path(session.id), method: :delete,class:"btn btn-danger" %>
-                </li>
-            <%else%>
-                <li class="nav-item">
-                  <%= link_to "Connexion", new_session_path,class:"btn btn-primary" %>
-                </li>
-                <li class="nav-item">
-                   <a class="nav-link" href="<%= new_user_path%>">Inscription</a>
-                </li>
-            <%end%>
           </ul>
+          <div class="ml-auto p-2 bd-highlight d-flex bd-highlight">
+              <% if current_user%>
+                    <%= link_to "Se déconnecter", session_path(session.id), method: :delete,class:"btn btn-danger" %>
+              <%else%>
+                    <%= link_to "Connexion", new_session_path,class:"btn btn-primary" %>
+                     <a class="nav-link" href="<%= new_user_path%>">Inscription</a>
+              <%end%>
+          </div>
         </div>
       </nav>
     <%= yield %>

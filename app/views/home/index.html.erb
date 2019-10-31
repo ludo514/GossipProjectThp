@@ -3,35 +3,37 @@
 
 	<head>
 	</head>
+
 	<body font-family="Arial">
-			<div class="jumbotron">
+			<div class="jumbotron text-center">
 		        <div class="container">
-		          <h1 class="display-3">Page d'Accueil</h1>
+		          <h1 class="display-3">Gossip Project</h1>
 		          <% if current_user%>
 		          	<h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
 		          <%end%>
 		          <p>Listes des potins créé par les utilisateurs</p>
-		          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
 		        </div>
 		      </div>
-			<div class = "column">
+			<div class = "container">
+				<div class="row justify-content-center">
 				<% @gossip.each do |t| %>
-					<div class="row justify-content-center">
-					 <div class="col-sm-6">
-					   <div class="card">
-					     <div class="card-body">
-					       <h5 class="card-title"> Auteur : <%= @user.find(t.user_id).first_name%></h5>
-					       <p class="card-text"><%= t.content %></p>
-					       <a class="btn btn-primary" href="<%= gossip_path(t.id)%>">Info</a>
-					       <a class="btn btn-primary" href="<%= edit_gossip_path(t.id)%>">Editer</a>
-					       	<a href="<%= gossip_path(t.id) %>" class="btn btn-danger" data-confirm="êtes vous sur ?" data-method="DELETE">Supprimez</a>
-					     </div>
-					   </div>
-					 </div>
-					</div>
+						 <div class="col-sm-6 pt-2">
+						   <div class="card">
+						     <div class="card-body">
+						       <h5 class="card-title"> Auteur : <%= @user.find(t.user_id).first_name%></h5>
+						       <p class="card-text"><%= t.content %></p>
+						       <a class="btn btn-primary" href="<%= gossip_path(t.id)%>">Info</a>
+						       <% if compare(t.user_id, session[:user_id])%>
+							       	<a class="btn btn-primary" href="<%= edit_gossip_path(t.id)%>">Editer</a>
+							       	<a href="<%= gossip_path(t.id) %>" class="btn btn-danger" data-confirm="êtes vous sur ?" data-method="DELETE">Supprimez</a>
+						       	<%end%>
+						     </div>
+						   </div>
+						</div>
+					<% end %>
+				</div>
 					<br><br>
-				<% end %>
-			</div>
+			
 	</body>
 
 </html>
