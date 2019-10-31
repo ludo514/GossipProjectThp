@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if user
       redirect_to '/'
     else
-      render :new
+      render 'new'
     end
   end
 

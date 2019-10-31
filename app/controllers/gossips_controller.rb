@@ -31,7 +31,8 @@ class GossipsController < ApplicationController
     if gossip
       redirect_to '/'
     else
-      render :new
+      flash.now[:danger] = 'Champ manquant'
+      render 'new'
     end
   end
 
