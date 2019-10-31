@@ -19,7 +19,7 @@ t = []
 	c << City.create(name: Faker::Address.city, zip_code: Faker::Address.zip_code)
 end
 10.times do |index|
-	u << User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10), email: Faker::Internet.email, age: rand(0..99), city: c.sample)
+	u << User.create(password:"ozidz",first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Lorem.sentence(word_count: 10), email: Faker::Internet.email, age: rand(0..99), city: c.sample)
 	puts "User : #{Faker::Name.first_name}"
 end
 20.times do |index|

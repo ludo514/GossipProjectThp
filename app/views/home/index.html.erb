@@ -7,6 +7,9 @@
 			<div class="jumbotron">
 		        <div class="container">
 		          <h1 class="display-3">Page d'Accueil</h1>
+		          <% if current_user%>
+		          	<h2>Bienvenue <%= User.find_by(id: session[:user_id]).first_name %> !</h2>
+		          <%end%>
 		          <p>Listes des potins créé par les utilisateurs</p>
 		          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
 		        </div>
