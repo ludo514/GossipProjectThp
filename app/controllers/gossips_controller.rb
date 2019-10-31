@@ -27,8 +27,8 @@ class GossipsController < ApplicationController
   end
 
   def create
-    gossip = Gossip.create(user_id: session[:user_id], title: params[:gossip][:title], content: params[:gossip][:content])
-    if gossip
+    @gossip = Gossip.new(user_id: session[:user_id], title: params[:gossip][:title], content: params[:gossip][:content])
+    if @gossip.save
       redirect_to '/'
     else
       flash.now[:danger] = 'Champ manquant'

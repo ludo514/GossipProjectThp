@@ -8,11 +8,11 @@ class UsersController < ApplicationController
   end
 
   def create
-  	post_params = params.require(:user).permit(:first_name, :last_name, :password, :city_id, :email)
-    user = User.create(post_params)
-    if user
+    @user = User.new(first_name:params[:user][:first_name], last_name: params[:user][:last_name], password: params[:user][:password],city_id: rand(1..10))
+    if @user.save
       redirect_to '/'
     else
+      flash.now[:danger] = 'Champ manquant'
       render 'new'
     end
   end

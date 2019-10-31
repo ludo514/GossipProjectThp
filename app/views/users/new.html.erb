@@ -4,14 +4,6 @@
 		<title></title>
 	</head>
 	<body class='justify-content-center'>
-		<% if @user.errors.any? %>
-		  <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
-		  <ul>
-		    <% @gossip.errors.full_messages.each do |message| %>
-		      <li><%= message %></li>
-		    <% end %>
-		  </ul>
-		<% end %>
 		<%= form_for @user do |f|%>
 		<div class="form-row mt-4">
 			<div class="form-group col-md-4 mb-3">
@@ -30,10 +22,6 @@
 			<div class="form-group col-md-6 mb-3">
 				<label>Mot de passe : </label>
 				<%= f.text_field :password, class:'form-control', placeholder:'mot de passe', type:'password'%>
-			</div>
-			<div class="form-group col-md-6 mb-3">
-				<label>City : </label>
-				<%= f.text_field :city_id, class:'form-control', placeholder:'ville'%>
 			</div>
 			<div class="form-group col-md-6 mb-3">
 				<label>Email : </label>
