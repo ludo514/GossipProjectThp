@@ -14,11 +14,11 @@
 		          <p>Listes des potins créé par les utilisateurs</p>
 		        </div>
 		      </div>
-			<div class = "container">
-				<div class="row justify-content-center">
+			<div class = "container mx-auto">
+				<div class="row justify-content-center shadow">
 				<% @gossip.each do |t| %>
 						 <div class="col-sm-6 pt-2">
-						   <div class="card">
+						   <div class="card mx-auto">
 						     <div class="card-body">
 						       <h5 class="card-title"> Auteur : <%= @user.find(t.user_id).first_name%></h5>
 						       <p class="card-text"><%= t.content %></p>
