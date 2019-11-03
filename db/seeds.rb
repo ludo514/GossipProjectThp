@@ -31,6 +31,10 @@ end
 	puts "Tag : #{Faker::Book.title}"
 end
 10.times do |index|
+	Commentaire.create(content: Faker::Lorem.sentence(word_count: 10),user: u.sample,gossip: g.sample)
+	puts "Commentaire : #{Faker::Lorem.sentence(word_count: 10)}"
+end
+10.times do |index|
 	TagGossip.create(tag: t.sample, gossip: g.sample)
 end
 2.times do |index|

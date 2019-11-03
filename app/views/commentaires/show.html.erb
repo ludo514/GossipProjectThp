@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+	<body>
+		<h1 class="text-center">Gossip numéro <%=@gossip.id%></h1>
+		<div class="row justify-content-center">
+						 <div class="col-sm-6 pt-2 pb-3">
+						   <div class="card">
+						     <div class="card-body">
+						       <h5 class="card-title"> Auteur : <%= link_to "#{@user.find(@gossip.user_id).first_name}",user_path(@gossip.user_id) %></h5>
+						       <p class="card-text">Date de création :<%=@gossip.created_at%></p>
+						       <p class="card-text">Titre :<%= @gossip.title %></p>
+						       <p class="card-text">Contenu : <%= @gossip.content %></p>
+						     </div>
+						   </div>
+						</div>
+		</div>
+		<div class="expand-lg navbar-light bg-info text-center">
+		  <div class="container">
+		    <h5><strong>Commentaires</strong></h5>
+		  </div>
+		</div>
+		<div class="container row mx-auto">
+			<% c = @commentaires.where(gossip_id: @gossip.id)%>
+			<% c.each do |t| %>
+				<div class="col-sm-6 pt-2">
+					<div class="card w-60">
+						<div class="card-body">
+							<h5 class="card-title"> Auteur : <%= @user.find(t.user_id).first_name%></h5>
+							<p class="card-text"><%= t.content %></p>
+							<% if compare(t.user_id, session[:user_id])%>
+								<%=link_to("Supprimez", commentaires_destroy_path(t.id), method: :delete, data: { confirm: "Etes vous sure ?"}, class: 'btn btn-danger')%>
+							<%end%>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+		<% if current_user%>
+			<div class="container mx-auto pt-3">
+				<%= form_for @commentaire do |f|%>
+					<div class="form-group">
+						<label>Commentaire</label>
+						<%= f.text_area :content, class:'form-control'%>
+					</div>
+					<%= f.hidden_field :gossip_id, value: @gossip.id%>
+					<div class="form-group">
+						<%= f.submit "Vallider"%>
+					</div>
+				<%end%>
+			</div>
+		<% end%>
+	</body>
+</html>

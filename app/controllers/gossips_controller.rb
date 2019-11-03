@@ -42,7 +42,6 @@ class GossipsController < ApplicationController
       @gossip = Gossip.find(params[:id])
       @gossip.destroy
       redirect_to '/'
-
   end
 
   private

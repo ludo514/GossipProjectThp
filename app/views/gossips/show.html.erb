@@ -20,6 +20,18 @@
 						     </div>
 						   </div>
 						</div>
+		</div>
+		<div class="container mx-auto pt-3">
+			<%= form_for @commentaire do |f|%>
+				<div class="form-group">
+					<label>Commentaire</label>
+					<%= f.text_area :content, class:'form-control'%>
 				</div>
+				<%= f.hidden_field :gossip, value: @gossip.id%>
+				<div class="form-group">
+					<%= f.submit "Update"%>
+				</div>
+			<%end%>
+		</div>
 	</body>
 </html>

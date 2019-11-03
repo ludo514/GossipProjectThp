@@ -22,7 +22,7 @@
 						     <div class="card-body">
 						       <h5 class="card-title"> Auteur : <%= @user.find(t.user_id).first_name%></h5>
 						       <p class="card-text"><%= t.content %></p>
-						       <a class="btn btn-primary" href="<%= gossip_path(t.id)%>">Info</a>
+						       <a class="btn btn-primary" href="<%= commentaire_path(t.id)%>">Info</a>
 						       <% if compare(t.user_id, session[:user_id])%>
 							       	<a class="btn btn-primary" href="<%= edit_gossip_path(t.id)%>">Editer</a>
 							       	<a href="<%= gossip_path(t.id) %>" class="btn btn-danger" data-confirm="êtes vous sur ?" data-method="DELETE">Supprimez</a>
@@ -32,7 +32,6 @@
 						</div>
 					<% end %>
 				</div>
-					<br><br>
 			
 	</body>
 

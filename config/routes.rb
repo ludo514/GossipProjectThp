@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users, except: [:update, :edit]
   resources :sessions, only: [:new,:destroy, :create]
   resources :cities, except: [:create, :new, :update, :edit, :destroy]
+  resources :commentaires, only: [:show,:create]
+  delete '/commentaires/:id', to: 'commentaires#destroy', as: 'commentaires_destroy'
   get '/contact', to: 'contact#index'
   get '/team', to: 'team#index'
   get '/welcome/:first_name', to: 'welcome#bonjour'
